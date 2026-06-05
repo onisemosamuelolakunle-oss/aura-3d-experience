@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA — 3D Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- 3D Background -->
+    <div id="canvas-container"></div>
+    
+    <!-- Noise Texture -->
+    <div class="noise"></div>
+
+    <!-- Content -->
+    <div class="content-wrapper">
+        
+        <!-- Navigation -->
+        <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
+            <div class="font-display text-2xl font-bold tracking-tighter hover-target">AURA</div>
+            <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="hover-target hover:text-gray-300 transition-colors">ABOUT</a>
+                <a href="#features" class="hover-target hover:text-gray-300 transition-colors">FEATURES</a>
+                <a href="#work" class="hover-target hover:text-gray-300 transition-colors">WORK</a>
+                <a href="#contact" class="hover-target hover:text-gray-300 transition-colors">CONTACT</a>
+            </div>
+            <button class="magnetic-btn hover-target px-6 py-2 border border-white/30 rounded-full text-sm hover:bg-white hover:text-black transition-all duration-300">
+                Get Started
+            </button>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center relative px-4">
+            <div class="text-center max-w-5xl mx-auto relative z-10">
+                <div class="mb-6 inline-block">
+                    <span class="px-4 py-1.5 rounded-full border border-white/20 text-xs tracking-widest uppercase text-gray-400 glass-card">
+                        Next Generation Experience
+                    </span>
+                </div>
+                <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-bold leading-none mb-8 tracking-tight">
+                    <span class="block reveal">SHAPE</span>
+                    <span class="block text-gradient reveal" style="transition-delay: 0.1s">THE FUTURE</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed reveal" style="transition-delay: 0.2s">
+                    We craft immersive digital experiences that blur the line between imagination and reality. Step into a new dimension of web design.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center reveal" style="transition-delay: 0.3s">
+                    <button class="magnetic-btn hover-target px-8 py-4 bg-white text-black rounded-full font-semibold hover:scale-105 transition-transform">
+                        Explore Work
+                    </button>
+                    <button class="magnetic-btn hover-target px-8 py-4 border border-white/30 rounded-full font-semibold hover:bg-white/10 transition-all">
+                        Watch Showreel
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float">
+                <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+                    <div class="w-1 h-2 bg-white rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="min-h-screen flex items-center py-32 px-4">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="font-display text-5xl md:text-6xl font-bold mb-8 leading-tight">
+                        Digital craftsmanship<br>
+                        <span class="text-gray-500">meets artistic vision</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        We are a collective of designers, developers, and dreamers pushing the boundaries of what's possible on the web. Every pixel is intentional, every interaction is meaningful.
+                    </p>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="font-display text-4xl font-bold text-gradient">150+</div>
+                            <div class="text-sm text-gray-500 mt-2">Projects</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-4xl font-bold text-gradient">50+</div>
+                            <div class="text-sm text-gray-500 mt-2">Clients</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-4xl font-bold text-gradient">12</div>
+                            <div class="text-sm text-gray-500 mt-2">Awards</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative reveal">
+                    <div class="glass-card rounded-3xl p-8 aspect-square flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-tr from-purple-400 to-pink-400 animate-pulse"></div>
+                            <p class="text-2xl font-display font-bold">Interactive Core</p>
+                        </div>
+                    </div>
+                    <!-- Decorative elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 border border-white/10 rounded-full"></div>
+                    <div class="absolute -bottom-8 -left-8 w-32 h-32 border border-white/10 rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-32 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 reveal">
+                    <h2 class="font-display text-5xl md:text-6xl font-bold mb-6">Capabilities</h2>
+                    <p class="text-gray-400 text-lg max-w-2xl mx-auto">Pushing boundaries with cutting-edge technology and creative excellence.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-3xl p-10 reveal hover-target">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4">3D Visualization</h3>
+                        <p class="text-gray-400 leading-relaxed">Immersive three-dimensional experiences that captivate and engage your audience like never before.</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-3xl p-10 reveal hover-target" style="transition-delay: 0.1s">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4">Motion Design</h3>
+                        <p class="text-gray-400 leading-relaxed">Fluid animations and micro-interactions that bring interfaces to life with purpose and personality.</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-3xl p-10 reveal hover-target" style="transition-delay: 0.2s">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4">WebGL Effects</h3>
+                        <p class="text-gray-400 leading-relaxed">Cutting-edge shader programming and GPU-accelerated graphics for unparalleled visual fidelity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="py-32 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                    <div>
+                        <h2 class="font-display text-5xl md:text-6xl font-bold mb-4">Selected Work</h2>
+                        <p class="text-gray-400 text-lg">A curated collection of our finest projects.</p>
+                    </div>
+                    <button class="magnetic-btn hover-target mt-6 md:mt-0 px-6 py-3 border border-white/30 rounded-full hover:bg-white hover:text-black transition-all">
+                        View All Projects
+                    </button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] reveal hover-target cursor-pointer">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-blue-900 transition-transform duration-700 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                        <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300 mb-2">Brand Identity / 3D</p>
+                            <h3 class="font-display text-3xl font-bold">Neon Horizons</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] reveal hover-target cursor-pointer" style="transition-delay: 0.1s">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-900 to-red-900 transition-transform duration-700 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                        <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300 mb-2">Web Experience</p>
+                            <h3 class="font-display text-3xl font-bold">Solar Flare</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] reveal hover-target cursor-pointer">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-900 to-teal-900 transition-transform duration-700 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                        <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300 mb-2">Interactive Installation</p>
+                            <h3 class="font-display text-3xl font-bold">Digital Garden</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/3] reveal hover-target cursor-pointer" style="transition-delay: 0.1s">
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-900 to-purple-900 transition-transform duration-700 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                        <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300 mb-2">E-Commerce</p>
+                            <h3 class="font-display text-3xl font-bold">Luxe Market</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="py-32 px-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"></div>
+            <div class="max-w-4xl mx-auto text-center relative z-10 reveal">
+                <h2 class="font-display text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                    Ready to create<br>
+                    <span class="text-gradient">something extraordinary?</span>
+                </h2>
+                <p class="text-gray-400 text-xl mb-12 max-w-2xl mx-auto">
+                    Let's collaborate and build an experience that leaves a lasting impression.
+                </p>
+                <button class="magnetic-btn hover-target px-10 py-5 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl shadow-purple-500/25">
+                    Start a Project
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/10 py-12 px-4">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="font-display text-2xl font-bold tracking-tighter">AURA</div>
+                <div class="text-gray-500 text-sm">© 2026 Aura Digital. All rights reserved.</div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover-target text-gray-400 hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="hover-target text-gray-400 hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="hover-target text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
